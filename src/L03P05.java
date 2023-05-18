@@ -20,16 +20,16 @@ public class L03P05 {
 
     public static double findMax(int[] capacities, int w) {
         double max;
-        double p;
+        double lines;
         Arrays.sort(capacities);
         int middle = capacities.length/2;
         int start = 0;
         if(capacities[middle]/capacities[start] >= 2) {
-            p = capacities[start];
+            lines = capacities[start];
         } else {
-            p = ((double) capacities[middle])/2;
+            lines = ((double) capacities[middle])/2;
         }
-        max = 3*p*(capacities.length/2);
+        max = 3*lines*(capacities.length/2);
         if(max > w) return w;
         return max;
     }

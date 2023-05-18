@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Created by HachNV on 17/05/2023
@@ -15,32 +12,29 @@ public class L03P08 {
             lines[i][1] = sc.nextInt();
         }
 
-        boolean res = isRespectable(lines);
-        if(res) {
+        isRespectable(lines);
+    }
+
+    public static void isRespectable(int[][] lines) {
+        Arrays.sort(lines, (int[] a, int[] b) -> {
+            int compareResult = Integer.compare(a[0], b[0]);
+            if (compareResult == 0) {
+                return Integer.compare(a[1], b[1]);
+            }
+            return compareResult;
+        });
+        if (lines[0][0] == lines[1][0] && lines[1][0] == lines[2][0]
+                && lines[2][0] != lines[3][0] && lines[3][0] == lines[4][0]
+                && lines[4][0] != lines[5][0] && lines[5][0] == lines[6][0]
+                && lines[6][0] == lines[7][0] && lines[0][1] == lines[3][1]
+                && lines[3][1] == lines[5][1] && lines[1][1] != lines[4][1]
+                && lines[1][1] == lines[6][1] && lines[2][1] == lines[4][1]
+                && lines[4][1] == lines[7][1])
+        {
             System.out.println("respectable");
         } else {
             System.out.println("ugly");
         }
-    }
-
-    public static boolean isRespectable(int[][] lines) {
-        List<Integer> xCoordinates = new ArrayList<>();
-        List<Integer> yCoordinates = new ArrayList<>();
-
-        for (int[] line : lines) {
-            xCoordinates.add(line[0]);
-            yCoordinates.add(line[1]);
-        }
-
-        Collections.sort(xCoordinates);
-        Collections.sort(yCoordinates);
-        if(xCoordinates.get(5).equals(xCoordinates.get(4))) return false;
-
-        for (int i = 0; i < xCoordinates.size(); i++) {
-            if(!xCoordinates.get(i).equals(yCoordinates.get(i))) return false;
-        }
-
-        return true;
     }
 
 }
